@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by mfahrner on 9/23/16.
@@ -36,7 +37,9 @@ public class WebsiteController {
 
     @RequestMapping (path = "/blog", method = RequestMethod.GET)
     public String blog(Model model, HttpSession session) {
+        List<Post> postList = (List)posts.findAll();
         model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("posts", postList);
         return "blog";
     }
 
