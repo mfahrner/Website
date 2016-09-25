@@ -1,9 +1,18 @@
 package com.theironyard.charlotte.controllers;
 
+import com.theironyard.charlotte.entities.User;
+import com.theironyard.charlotte.services.UserRepository;
+import com.theironyard.charlotte.utilities.PasswordStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 /**
  * Created by mfahrner on 9/23/16.
@@ -11,23 +20,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class WebsiteController {
 
+    @Autowired
+    UserRepository users;
+
     @RequestMapping (path = "/", method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
+        model.addAttribute("name", session.getAttribute("name"));
         return "home";
     }
 
     @RequestMapping (path = "/about", method = RequestMethod.GET)
-    public String about(Model model) {
+    public String about(Model model, HttpSession session) {
+        model.addAttribute("name", session.getAttribute("name"));
         return "about";
     }
 
     @RequestMapping (path = "/blog", method = RequestMethod.GET)
-    public String blog(Model model) {
+    public String blog(Model model, HttpSession session) {
+        model.addAttribute("name", session.getAttribute("name"));
         return "blog";
     }
 
     @RequestMapping (path = "/resume", method = RequestMethod.GET)
-    public String resume(Model model) {
+    public String resume(Model model, HttpSession session) {
+        model.addAttribute("name", session.getAttribute("name"));
         return "resume";
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public void login(String name, String password, HttpSession session, HttpServletResponse response) throws Exception {
+        User user = users.findByName(name);
+        if (!PasswordStorage.verifyPassword(password, user.getPassword())) {
+            throw new Exception("Wrong password");
+        }
+        session.setAttribute("name", name);
+        response.sendRedirect("/");
+    }
+
+    @PostConstruct
+    public void init() throws PasswordStorage.CannotPerformOperationException {
+        if (users.count() == 0) {
+            User mike = new User("mike", PasswordStorage.createHash("1234"));
+            users.save(mike);
+        }
     }
 }
