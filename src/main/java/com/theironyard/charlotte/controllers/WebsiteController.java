@@ -15,4 +15,19 @@ public class WebsiteController {
     public String home(Model model) {
         return "home";
     }
+
+    @RequestMapping (path = "/about", method = RequestMethod.GET)
+    public String about(Model model) {
+        return "about";
+    }
+
+    @RequestMapping (path = "/blog", method = RequestMethod.GET)
+    public String blog(Model model) {
+        return "blog";
+    }
+
+    @RequestMapping (path = "/resume", method = RequestMethod.GET)
+    public String resume(Model model) {
+        return "resume";
+    }
 }
