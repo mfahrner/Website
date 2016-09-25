@@ -1,6 +1,8 @@
 package com.theironyard.charlotte.controllers;
 
+import com.theironyard.charlotte.entities.Post;
 import com.theironyard.charlotte.entities.User;
+import com.theironyard.charlotte.services.PostRepository;
 import com.theironyard.charlotte.services.UserRepository;
 import com.theironyard.charlotte.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +25,13 @@ public class WebsiteController {
     @Autowired
     UserRepository users;
 
+    @Autowired
+    PostRepository posts;
+
     @RequestMapping (path = "/", method = RequestMethod.GET)
     public String home(Model model, HttpSession session) {
         model.addAttribute("name", session.getAttribute("name"));
         return "home";
-    }
-
-    @RequestMapping (path = "/about", method = RequestMethod.GET)
-    public String about(Model model, HttpSession session) {
-        model.addAttribute("name", session.getAttribute("name"));
-        return "about";
     }
 
     @RequestMapping (path = "/blog", method = RequestMethod.GET)
@@ -54,6 +53,13 @@ public class WebsiteController {
             throw new Exception("Wrong password");
         }
         session.setAttribute("name", name);
+        response.sendRedirect("/");
+    }
+
+    @RequestMapping(path = "/blog", method = RequestMethod.POST)
+    public void blogPost(String date, String text, HttpSession session, HttpServletResponse response) throws Exception {
+        Post post = new Post(date, text);
+        posts.save(post);
         response.sendRedirect("/");
     }
 
