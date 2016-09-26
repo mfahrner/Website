@@ -14,22 +14,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link type = "text/css" href="/css/app.css" media = " all" rel="stylesheet"/>
-
 </head>
+
 <body>
 {{> partials/navbar}}
-<h1>blog</h1>
+
+<div class="jumbotron">
+    <h1 align="center">Blog</h1>
+    <p>...</p>
+</div>
 
 {{> partials/add-post}}
 
-<ol>
+
+<div class="posts">
+<ul class="posts">
     {{#posts}}
         <li>
-            {{date}} {{text}}
+            <h3 align="left">{{date}}</h3>
+            <br>
+            <p>{{text}}</p>
         </li>
     {{/posts}}
-</ol>
-
+</ul>
+</div>
 
 </body>
 </html>

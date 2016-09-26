@@ -1,5 +1,15 @@
 form.form-inline {
-position: fixed;
+position: relative;
+        float: right;
         right: 0px;
         top: 10px;
+}
+
+ul.posts {
+    display: inline-block;
+}
+
+div.posts {
+    text-align: center;
+
 }
