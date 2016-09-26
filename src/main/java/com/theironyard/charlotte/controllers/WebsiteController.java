@@ -31,7 +31,9 @@ public class WebsiteController {
 
     @RequestMapping (path = "/", method = RequestMethod.GET)
     public String home(Model model, HttpSession session) {
+        List<Post> postList = (List)posts.findAll();
         model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("posts", postList);
         return "home";
     }
 
@@ -45,7 +47,9 @@ public class WebsiteController {
 
     @RequestMapping (path = "/resume", method = RequestMethod.GET)
     public String resume(Model model, HttpSession session) {
+        List<Post> postList = (List)posts.findAll();
         model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("posts", postList);
         return "resume";
     }
 
