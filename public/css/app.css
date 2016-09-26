@@ -59,3 +59,14 @@ div.posts {
 .sidebar-nav li a:hover {
     background: gray;
 }
+
+#frontpage {
+position: relative;
+    left: 40%;
+}
+
+#frontpagetext{
+position: relative;
+    right: 45%;
+    text-align: center;
+}
