@@ -10,7 +10,13 @@ ul.posts {
 }
 
 div.posts {
+    position: relative;
+    left: 200px;
     text-align: center;
+    background: gray;
+    color: white;
+    width: 70%;
+
 }
 
 
@@ -70,3 +76,40 @@ position: relative;
     right: 45%;
     text-align: center;
 }
+
+.caption {
+    text-align: center;
+}
+
+#nav {
+    background: black;
+    color: gray;
+}
+
+#menu-toggle {
+    color: black;
+}
+
+.jumbotron {
+    background: gray;
+    color: white;
+}
+
+.thumbnail {
+
+}
+
+#post-header {
+color: black;
+}
+
+caption.h3 {
+color: black;
+}
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 40%;
+      height: 20%;
+      margin: auto;
+  }
