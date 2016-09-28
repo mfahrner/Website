@@ -12,24 +12,25 @@
 
 <body>
 <div id="wrapper">
+
     {{> partials/sidebar}}
 
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
 
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-{{> partials/navbar}}
+    {{> partials/navbar}}
 
-{{> partials/blog-jumbo}}
+    {{> partials/blog-jumbo}}
 
-{{> partials/add-post}}
+    {{> partials/add-post}}
 
-{{> partials/posts}}
+    {{> partials/posts}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <script>
@@ -37,6 +38,6 @@
             e.preventDefault();
             $("#wrapper").toggleClass("menuDisplayed");
         });
-    </script>
+</script>
 </body>
 </html>

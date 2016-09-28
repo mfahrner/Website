@@ -8,20 +8,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link type = "text/css" href="/css/app.css" media = " all" rel="stylesheet"/>
-    <style>
-
-  </style>
 </head>
 <body>
 <div id="wrapper">
-{{> partials/sidebar}}
 
+    {{> partials/sidebar}}
 
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+
                     {{> partials/navbar}}
+
                     {{> partials/carousel}}
                 </div>
             </div>
@@ -34,7 +33,7 @@
             e.preventDefault();
             $("#wrapper").toggleClass("menuDisplayed");
         });
-    </script>
+</script>
 
 </body>
 </html>
